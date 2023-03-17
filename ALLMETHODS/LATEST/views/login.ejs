@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+
+        <div class="bodyWrap">
+            <div class="contentLoginWrap">
+                <form class="loginSide">
+                    <div class="loginWrap">
+                        <h1>Log in</h1>
+                        <div class="input-group">
+                            <input type="text" id="email" class="input" required="" /><label class="">Login</label
+          >
+        </div>
+        <div class="input-group">
+          <input type="text" id="password" class="input password" required="" /><label
+            class=""
+            >Password</label
+          >
+        </div>
+        <button  onclick="login()">Login</button>
+      </div>
+    </div>
+    <div class="infoSide">
+      <div class="loginWrap">
+        <h2>Hello again!</h2>
+        <p>Log in to your account to get access to app.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    const login = () => {
+        console.log('login')
+        // Get The Input Values
+        const username = document.querySelector('#email').value
+        const password = document.querySelector('#password').value
+
+        console.log(username, password)
+
+        // AXIOS Request
+        axios.post('/login', {
+            username,
+            password
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+                'Access-Control-Allow-Headers': 'X-Requested-With,content-type'
+            }
+        }).then((res) => {
+            console.log(res)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
+
+        // AJAX Request
+
+                }
+
+</script>

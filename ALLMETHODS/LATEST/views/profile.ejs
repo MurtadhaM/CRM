@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mvp.css/1.6.2/mvp.css" integrity="sha512-slB21TTezvEAaveXL2z5dh3TjuIuk5XNI+9xzQRmTl8i651v3JQLKPEiHuMR6xyw1P+VXGt7QQdv9Xb0iBXnkQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  
+    <!-- JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- AXIOS-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Profile page</title>
+</head>
+<body>
+   <main> 
+     <h1>Profile page</h1>
+     <p>This page is private</p>
+     <%= user %>
+      <%= user.email %>
+     <a href="/sessionLogout">Log out</a>
+   </main>
+</body>
+</html>
