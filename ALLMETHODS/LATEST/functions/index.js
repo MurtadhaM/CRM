@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const express = require("express");
 const serviceAccount = require("./serviceAccountKey.json");
 const bodyParser = require("body-parser");
-const firebase =  require("firebase");
+const firebase = require("firebase");
 const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
