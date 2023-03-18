@@ -6,17 +6,32 @@ import { async } from '@firebase/util';
 import session from 'express-session';
 
 const logout = (req, res) => {
-    // Firebase logout
-    signOut(auth).then(() => {
-        // Sign-out successful.
-        console.log('Signed out')
-    }).catch((error) => {
-        // An error happened.
-        console.log(error)
-    });
-    // Session logout
-    req.session.destroy();
-    res.redirect('/');
+    try {
+        // Firebase logout
+
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log('Signed out')
+            res.status(200).end(JSON.stringify({ message: 'Signed out' }));
+
+
+        }).catch((error) => {
+            // An error happened.
+            console.log(error)
+            res.status(400).send(JSON.stringify({ message: error.message }));
+
+
+        });
+
+
+        res.status(302).end(JSON.stringify({ message: 'REDICRECT' }));
+
+    } catch (e) {
+        console.log(e);
+        res.status(402).end(JSON.stringify({ message: e.message }));
+
+    }
+
 
 
 };

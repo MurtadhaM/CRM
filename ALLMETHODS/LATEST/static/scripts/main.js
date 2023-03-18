@@ -1,5 +1,5 @@
 function populateNav() {
-    let links = ['Dashboard', 'Clients', 'Documents', 'Settings'];
+    let links = ['Dashboard', 'Clients', 'Documents', 'Settings', "Logout"];
     $('.sidebar-link').each(function(index) {
         $(this).attr('href', links[index]);
         $(this).value = (links[index]);

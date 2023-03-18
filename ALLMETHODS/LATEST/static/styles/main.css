@@ -3,6 +3,15 @@
     margin-bottom: 20%;
 }
 
+#logo {
+    width: 20%;
+    display: block;
+    margin: auto;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    max-width: 150px;
+}
+
 .SidebarLogoWrap {
     /** Border **/
     border: 1px solid #e1e4e8;

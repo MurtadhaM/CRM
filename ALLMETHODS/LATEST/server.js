@@ -2,6 +2,12 @@ import express from "express"
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
+import {} from 'multer';
+import multer from 'multer';
+const upload = multer({ dest: './uploads/' })
+
+
+
 
 const router = express.Router();
 const PORT = process.env.PORT || 8080;

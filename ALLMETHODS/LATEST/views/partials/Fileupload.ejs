@@ -1,0 +1,50 @@
+<!-- BULMA-->
+<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css ">
+<script>
+    $(document).ready(function() {
+        $('.close-btn').click(function() {
+            $('.contentLoginWrap').hide();
+        });
+        $('.upload-btn').click(function() {
+            $('.contentLoginWrap').style.display = " block ";
+        });
+
+        $('#upload').click(function() {
+            upload();
+        });
+    });
+    const upload = () => {
+        console.log('upload')
+            // Get The Input Values
+        const file = document.querySelector('#chooseFile').files[0]
+
+        const fileName = document.querySelector('#chooseFile').files[0].name
+
+
+
+    }
+</script>
+<div class="popup-inner ">
+    <button class="close-btn ">
+      <i class="fa fa-close " style="font-size:36px "></i>
+    </button>
+    <div class="popupWrap ">
+
+        <div class="popupContent ">
+            <h1>Upload your file</h1>
+            <p>Upload your file to the server</p>
+        </div>
+
+    </div>
+    <div class="submitWrap ">
+        <!-- FILE UPLOAD-->
+
+        <form action="/Upload " method="post " enctype="multipart/form-data ">
+            <input type="file" name="avatar" />
+            <input type="submit " id="button" class="button" value="Upload " />
+        </form>
+
+        <a href="/logout "> <button id="button " id="button" class="button" class="logout"> Log out
+        </button></a>
+    </div>
+</div>

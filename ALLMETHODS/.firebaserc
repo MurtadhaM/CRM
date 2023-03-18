@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "stage": "file-crm",
+    "default": "file-crm"
+  },
+  "targets": {},
+  "etags": {}
+}
