@@ -22,6 +22,8 @@ router.post("/login", function(req, res) {
 });
 
 
+
+
 router.get("/signup", function(req, res) {
     res.render("signup");
 })
@@ -68,5 +70,10 @@ router.post("/reset", (req, res) => {
 router.get("/logout", function(req, res) {
     authController.logout(req, res);
 });
+
+router.post("/tokenLogin", (req, res) => {
+    authController.loginWithToken(req, res);
+});
+
 
 export { router as default }

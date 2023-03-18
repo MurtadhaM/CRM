@@ -6,6 +6,9 @@ import {} from 'multer';
 import multer from 'multer';
 const upload = multer({ dest: './uploads/' })
 
+import pkg from 'express-jwt';
+const { expressjwt, ExpressJwtRequest } = pkg;
+
 
 
 
@@ -51,6 +54,21 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 } // 1 week
 
 }));
+
+
+
+
+app.get(
+    "/protected",
+    expressjwt({ secret: "shhhhhhared-secret", algorithms: ["HS256"] }),
+    function(req, res) {
+        if (!req.auth.admin) return res.sendStatus(401);
+        res.sendStatus(200);
+    }
+);
+
+
+
 
 
 

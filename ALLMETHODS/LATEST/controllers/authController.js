@@ -1,9 +1,13 @@
 import { auth } from '../config.js';
+import pkg from 'jsonwebtoken';
+const { jwt } = pkg;
+import {}
+from './../errors/index.js';
 
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { firebaseAuth } from './middlewareController.js';
 import { async } from '@firebase/util';
-import session from 'express-session';
+import session, { Cookie } from 'express-session';
 
 const logout = (req, res) => {
     try {
@@ -38,10 +42,28 @@ const logout = (req, res) => {
 
 
 
-const login = (req, next, res) => {
+const loginWithToken = (req, res) => {
+    try {
+
+        console.log(req.session)
+        res.end(JSON.stringify({ status: 'success' }));
+
+
+    } catch (e) {
+        console.log(e);
+        res.status(402).end(JSON.stringify({ message: e.message }));
+
+
+    }
+
+};
+
+
+const login = (req, res) => {
     let code = 400;
     let message = "login";
-
+    let user;
+    let token = null;
     try {
 
         const { email, password } = req.body;
@@ -49,19 +71,35 @@ const login = (req, next, res) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                var user = userCredential.user;
                 console.log('User Logged In')
                 code = 200;
                 message = "success";
-                req.session = user;
-                req.session.authenticated = true;
-                console.log(req.session);
-                res.status(code).json({ message: message, user: user });
+
+
+                req.session = userCredential.user;
+
+
+                user = userCredential.user;
+                console.log(userCredential.user)
+
+                res.cookie('idToken', { maxAge: 60 * 60 * 24 * 5 * 1000, httpOnly: true, secure: true, idToken: userCredential.user.getIdToken() });
+                res.status(200).send(JSON.stringify({ message: message, code: code, user: user, token: token }));
+                userCredential.user.getIdToken().then((idToken) => {
+                    console.log(idToken)
+
+
+
+
+
+                }).catch((error) => {
+                    // Handle error
+                    console.log(error)
+                });
+
             })
             .catch((error) => {
                 code = error.code;
                 message = error.message;
-
                 console.log(error.code, error.message);
             });
     } catch (e) {
@@ -70,12 +108,9 @@ const login = (req, next, res) => {
         console.log(e.code, e.message);
     }
 
-    console.log(code, message);
-
-
-
 
 };
+
 
 
 
@@ -167,4 +202,4 @@ const reset = async(req, res) => {
 };
 
 
-export default { login, signup, profile, reset, logout };
+export default { login, signup, profile, reset, logout, loginWithToken };
